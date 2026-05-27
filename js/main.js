@@ -29,21 +29,18 @@ const COMPANY_DATA = {
       }
     ],
     projects: [
-      { name: '미디어아트 《공명의 시간》', year: '2023', category: 'Media Art' },
-      { name: '전시 《사라지는 경계》', year: '2023', category: 'Exhibition' },
-      { name: '미디어파사드 《빛의 결》', year: '2023', category: 'Media Facade' },
-      { name: '몰입형 전시 《Connection》', year: '2022', category: 'Exhibition' },
-      { name: '브랜드 프로모션 영상', year: '2022', category: 'Promotion' },
-      { name: '인터랙티브 콘텐츠 《숨》', year: '2022', category: 'Interactive' },
-      { name: '사운드 라이브러리 v1', year: '2022', category: 'Library' },
-      { name: '오디오북 《달의 노래》', year: '2022', category: 'Audio Book' },
-      { name: '전시 《깊은 숲의 소리》', year: '2022', category: 'Exhibition' },
-      { name: '미디어아트 《빛과 소리》', year: '2021', category: 'Media Art' },
-      { name: '단편 영화 《여름의 끝》', year: '2021', category: 'Film' },
-      { name: '광고 《Re:born》', year: '2021', category: 'Commercial' },
-      { name: '사운드 라이브러리 v2', year: '2023', category: 'Library' },
-      { name: '브랜드 사운드 로고', year: '2023', category: 'Branding' },
-      { name: '전시 《기억의 결》', year: '2023', category: 'Exhibition' }
+      { name: '한국형 효과음원 구축 사업', year: '2021~2022', category: 'Sound Library' },
+      { name: '회사 IP 라이브러리 제작', year: '2023', category: 'Sound Library' },
+      { name: '오디오북 점이지대', year: '2023', category: 'Audio Book' },
+      { name: '오디오북 구운몽', year: '2022', category: 'Audio Book' },
+      { name: '오디오북 반태산 귀신사냥꾼', year: '2021', category: 'Audio Book' },
+      { name: '공기관 미디어아트 전시', year: '2021', category: 'Exhibition' },
+      { name: '지역 문화 콘텐츠 재생 전시', year: '2021', category: 'Exhibition' },
+      { name: '기업 B2B 실감콘텐츠 제작', year: '2023', category: 'Exhibition' },
+      { name: '아시아 문화 다큐멘터리', year: '2021~2022', category: 'ETC' },
+      { name: '2023 우리 역사넷 교육영상', year: '2023', category: 'ETC' },
+      { name: '2023 전주시 민선8기 홍보영상', year: '2023', category: 'ETC' },
+      { name: '2023전북특별자치도 론칭 TV CF', year: '2023', category: 'ETC' },
     ]
   },
   talkback: {
