@@ -276,19 +276,47 @@ p { margin: 0; }
   50% { transform: translateY(4px); opacity: 1; }
 }
 
-/* ============== PROFILE ============== */
-.profile__intro {
-  text-align: center;
-  margin-bottom: 120px;
+/* ============== INTRO (full-screen) ============== */
+.intro-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px;
+  background: var(--color-bg);
+  position: relative;
 }
-.profile__intro-text {
-  font-size: clamp(20px, 2.6vw, 32px);
+.intro-section__inner {
+  max-width: 1100px;
+  text-align: center;
+}
+.intro-section__text {
+  font-size: clamp(22px, 3.4vw, 44px);
   font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.5;
+  letter-spacing: -0.03em;
+  line-height: 1.55;
   color: var(--color-text);
 }
+.intro-section__line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s var(--ease), transform 1s var(--ease);
+}
+.intro-section.is-in .intro-section__line:nth-child(1) {
+  opacity: 1; transform: translateY(0);
+  transition-delay: 0.05s;
+}
+.intro-section.is-in .intro-section__line:nth-child(2) {
+  opacity: 1; transform: translateY(0);
+  transition-delay: 0.35s;
+}
+@media (max-width: 560px) {
+  .intro-section { padding: 80px 20px; }
+  .intro-section__text { line-height: 1.65; }
+}
 
+/* ============== PROFILE ============== */
 .profile__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -379,6 +407,25 @@ p { margin: 0; }
   grid-template-columns: minmax(280px, 30%) 1fr;
   gap: 24px;
   align-items: start;
+  transition: grid-template-columns 0.5s var(--ease);
+}
+/* 디테일 모드 - 좌측 축소 / 우측 확장 */
+.experience__layout.is-detail {
+  grid-template-columns: minmax(180px, 18%) 1fr;
+}
+.experience__layout.is-detail .company-card {
+  padding: 18px 20px;
+  transition: padding 0.4s var(--ease);
+}
+.experience__layout.is-detail .company-card__role,
+.experience__layout.is-detail .company-card__period,
+.experience__layout.is-detail .company-card__bullets,
+.experience__layout.is-detail .company-card__btn {
+  display: none;
+}
+.experience__layout.is-detail .company-card__name {
+  font-size: 16px;
+  margin-bottom: 0;
 }
 .experience__left {
   display: flex;
@@ -386,6 +433,10 @@ p { margin: 0; }
   gap: 20px;
   position: sticky;
   top: 96px;
+  transition: gap 0.4s var(--ease);
+}
+.experience__layout.is-detail .experience__left {
+  gap: 10px;
 }
 
 /* Company card */
@@ -478,6 +529,9 @@ p { margin: 0; }
   padding: 40px;
   box-shadow: var(--shadow-card);
   animation: fadePanel 0.5s var(--ease);
+}
+.exp-panel--detail {
+  padding: 48px;
 }
 @keyframes fadePanel {
   from { opacity: 0; transform: translateY(8px); }
@@ -616,13 +670,13 @@ p { margin: 0; }
 .exp-detail {
   display: grid;
   grid-template-columns: 220px 1fr;
-  gap: 24px;
+  gap: 28px;
 }
 .exp-detail__list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 600px;
+  max-height: 720px;
   overflow-y: auto;
   padding-right: 4px;
 }
@@ -635,6 +689,7 @@ p { margin: 0; }
   cursor: pointer;
   border: 1.5px solid transparent;
   transition: all 0.2s var(--ease);
+  text-align: left;
 }
 .exp-detail__list-item:hover {
   background: var(--color-blue-soft);
@@ -656,41 +711,59 @@ p { margin: 0; }
 }
 .exp-detail__main {}
 .exp-detail__title {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 700;
-  letter-spacing: -0.025em;
-  margin-bottom: 6px;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  line-height: 1.25;
 }
 .exp-detail__meta {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-blue);
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
 }
 .exp-detail__thumb {
   aspect-ratio: 16 / 9;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-card);
   background: linear-gradient(135deg, #2a2f3a 0%, #131720 100%);
-  margin-bottom: 28px;
+  margin-bottom: 36px;
   overflow: hidden;
   display: grid;
   place-items: center;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 .exp-detail__thumb-placeholder {
   color: rgba(255,255,255,0.4);
-  font-size: 13px;
-  letter-spacing: 0.1em;
-}
-.exp-detail__sections { display: flex; flex-direction: column; gap: 24px; }
-.exp-detail__row h4 {
   font-size: 14px;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+}
+.exp-detail__sections { display: flex; flex-direction: column; gap: 32px; }
+.exp-detail__row {
+  padding: 4px 0;
+}
+.exp-detail__row h4 {
+  font-size: 16px;
   font-weight: 700;
   color: var(--color-blue);
-  margin-bottom: 6px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.01em;
+}
+.exp-detail__row h4::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--color-blue);
+  border-radius: 50%;
+  display: inline-block;
 }
 .exp-detail__row p {
-  font-size: 14px;
-  color: var(--color-text-mute);
+  font-size: 15px;
+  color: var(--color-text-sub);
+  line-height: 1.7;
 }
 
 /* ============== PORTFOLIO ============== */
@@ -1051,14 +1124,29 @@ p { margin: 0; }
   }
   .profile__intro { margin-bottom: 80px; }
 
-  .experience__layout {
+  .experience__layout,
+  .experience__layout.is-detail {
     grid-template-columns: 1fr;
+  }
+  .experience__layout.is-detail .company-card {
+    padding: 22px;
+  }
+  .experience__layout.is-detail .company-card__role,
+  .experience__layout.is-detail .company-card__period,
+  .experience__layout.is-detail .company-card__bullets,
+  .experience__layout.is-detail .company-card__btn {
+    display: revert;
+  }
+  .experience__layout.is-detail .company-card__name {
+    font-size: 20px;
+    margin-bottom: 6px;
   }
   .experience__left {
     position: static;
     flex-direction: column;
   }
   .exp-panel { padding: 28px 22px; }
+  .exp-panel--detail { padding: 28px 22px; }
   .exp-detail {
     grid-template-columns: 1fr;
   }
@@ -1073,6 +1161,10 @@ p { margin: 0; }
     flex: 0 0 auto;
     min-width: 160px;
   }
+  .exp-detail__title { font-size: 24px; }
+  .exp-detail__thumb { margin-bottom: 24px; }
+  .exp-detail__sections { gap: 24px; }
+  .exp-detail__row p { font-size: 14px; }
 
   .portfolio__grid {
     grid-template-columns: repeat(2, 1fr);
