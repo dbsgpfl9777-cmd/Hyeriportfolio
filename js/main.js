@@ -31,9 +31,9 @@ const COMPANY_DATA = {
     projects: [
       { name: '한국형 효과음원 구축 사업', year: '2021~2022', category: 'Sound Library' },
       { name: '회사 IP 라이브러리 제작', year: '2023', category: 'Sound Library' },
-      { name: '오디오북 점이지대', year: '2023', category: 'Audio Book' },
-      { name: '오디오북 구운몽', year: '2022', category: 'Audio Book' },
-      { name: '오디오북 반태산 귀신사냥꾼', year: '2021', category: 'Audio Book' },
+      { name: '오디오북 <점이지대>', year: '2023', category: 'Audio Book' },
+      { name: '오디오북 <구운몽>', year: '2022', category: 'Audio Book' },
+      { name: '오디오북 <반태산 귀신사냥꾼>', year: '2021', category: 'Audio Book' },
       { name: '공기관 미디어아트 전시', year: '2021', category: 'Exhibition' },
       { name: '지역 문화 콘텐츠 재생 전시', year: '2021', category: 'Exhibition' },
       { name: '기업 B2B 실감콘텐츠 제작', year: '2023', category: 'Exhibition' },
