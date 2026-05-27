@@ -66,15 +66,15 @@ const COMPANY_DATA = {
       }
     ],
     projects: [
-      { name: '런닝맨', year: '2019', category: '예능' },
-      { name: '범인은 바로 너', year: '2019', category: '예능' },
-      { name: '세븐틴 자체 콘텐츠', year: '2019', category: 'Content' },
-      { name: 'NCT 자체 콘텐츠', year: '2019', category: 'Content' },
-      { name: '독립 영화 《빛이 사라지면》', year: '2019', category: 'Film' },
-      { name: '독립 영화 《여름밤》', year: '2020', category: 'Film' },
-      { name: '웹드라마 《코너의 끝》', year: '2020', category: 'Drama' },
-      { name: '웹드라마 《다음 정거장》', year: '2020', category: 'Drama' },
-      { name: '단편 광고 영상', year: '2020', category: 'Commercial' }
+      { name: '런닝맨', year: '491,492회', category: '예능' },
+      { name: '범인은 바로 너', year: '시즌3 8화', category: '예능' },
+      { name: '세븐틴 자체 콘텐츠', year: '고잉세븐틴', category: 'Content' },
+      { name: 'NCT 자체 콘텐츠', year: 'NCT Dream', category: 'Content' },
+      { name: 'MBN <우리 다시 사랑할 수 있을까>', year: '2019', category: '예능' },
+      { name: '웹예능 <쏭개팅>', year: '2020', category: '예능' },
+      { name: '시즌 <아이돌 예병대 캠프>', year: '4기', category: '예능' },
+      { name: '웹예능 <왓더펀>', year: '공포특집', category: '예능' },
+      { name: '사장님 귀는 당나귀 귀', year: '김기태 감독편', category: '예능' }
     ]
   }
 };
