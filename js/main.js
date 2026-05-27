@@ -153,11 +153,23 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 $$('.reveal').forEach(el => revealObserver.observe(el));
 
+// Intro 섹션 - 시야에서 벗어나면 다시 사라지도록 (재진입 시 다시 나타남)
+const introSection = $('#intro');
+if (introSection) {
+  const introObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      introSection.classList.toggle('is-in', entry.isIntersecting);
+    });
+  }, { threshold: 0.35 });
+  introObserver.observe(introSection);
+}
+
 /* ============== EXPERIENCE ============== */
 const expEmpty   = $('#expEmpty');
 const expSummary = $('#expSummary');
 const expDetail  = $('#expDetail');
 const expBack    = $('#expBack');
+const expLayout  = $('#expLayout');
 const expSummaryTitle = $('#expSummaryTitle');
 const expSummaryBody  = $('#expSummaryBody');
 const expProjectsList = $('#expProjectsList');
@@ -171,6 +183,8 @@ let currentCompany = null;
 function showPanel(which) {
   [expEmpty, expSummary, expDetail].forEach(p => p.hidden = true);
   which.hidden = false;
+  // 디테일 모드일 때만 좌측 축소
+  expLayout.classList.toggle('is-detail', which === expDetail);
 }
 
 function renderCompanySummary(companyKey) {
