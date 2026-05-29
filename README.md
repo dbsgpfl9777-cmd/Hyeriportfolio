@@ -1,86 +1,151 @@
 # Yoon Hyeri · Sound Design Portfolio
 
 사운드 디자이너 윤혜리의 포트폴리오 웹사이트입니다.
-토스 디자인 가이드 철학(예측 가능성 / 사용자 자율성 / 짧고 능동적인 카피 / 일관성)을 기반으로 제작했어요.
 
 ## 폴더 구조
 
 ```
 yoonhyeri-portfolio/
-├── index.html          # 페이지 전체 마크업
-├── css/
-│   └── style.css       # 디자인 토큰 + 모든 스타일
-├── js/
-│   └── main.js         # 네비/스크롤/Experience/Portfolio 인터랙션
-├── assets/
-│   ├── images/         # 포트폴리오 썸네일 등 이미지
-│   └── videos/         # 영상 파일 (또는 외부 링크로 대체 가능)
+├── index.html          # 페이지 골격
+├── css/style.css       # 디자인 토큰 + 모든 스타일
+├── js/main.js          # 데이터 + 인터랙션
+├── assets/images/      # 포트폴리오 이미지 (여기에 파일 업로드)
+├── assets/videos/      # 영상 파일 (혹은 외부 링크 사용)
 └── README.md
 ```
 
+## 콘텐츠 수정 가이드 ✏️
+
+콘텐츠는 거의 다 `js/main.js`의 **상단 데이터 영역**에서 수정해요.
+
+---
+
+### 1) Experience 프로젝트 수정
+
+`js/main.js`의 `COMPANY_DATA` 안에서 회사별 `projects` 배열을 수정해요.
+
+```javascript
+{
+  name:     '프로젝트 이름',
+  year:     '2023',
+  category: 'Sound Library',
+  intro:    '프로젝트 소개 글입니다.\n줄바꿈도 가능해요.',
+  output:   [
+    '결과물 1',
+    '결과물 2',
+    { text: '관련 링크 텍스트', url: 'https://example.com' }
+  ],
+  role:     '내가 맡은 역할을 적어요.'
+}
+```
+
+#### 산출물 결과에 링크 넣기
+
+`output` 배열 안에 일반 글과 링크를 자유롭게 섞을 수 있어요.
+
+- **일반 글** → `'그냥 문자열'`
+- **링크** → `{ text: '보이는 글자', url: '실제 주소' }`
+
+링크는 자동으로 블루 + 화살표 아이콘으로 표시되고, 새 탭에서 열려요.
+
+#### 줄바꿈
+
+`\n` 을 넣으면 줄바꿈돼요. 예: `'첫 줄.\n둘째 줄.'`
+
+---
+
+### 2) Portfolio 작업 수정
+
+`js/main.js`의 `PORTFOLIO_DATA` 배열을 수정해요.
+
+```javascript
+{
+  id:       1,
+  title:    'Lies of P',
+  cat:      'RPG / Ingame',
+  tags:     ['rpg', 'ingame', 'unreal'],
+  video:    'https://youtu.be/영상ID',
+  meta: {
+    period: '2023.01 ~ 2024.03',
+    engine: 'Unreal Engine 5',
+    tools:  'Pro Tools, Wwise, Dolby Atmos'
+  },
+  sections: {
+    introduction: [
+      { type: 'text',  value: '소개 글입니다.' },
+      { type: 'image', src: 'assets/images/intro-1.jpg', alt: '인트로 이미지' }
+    ],
+    ambience:  [ { type: 'text', value: '...' } ],
+    voice:     [ { type: 'text', value: '...' } ],
+    sfx:       [ { type: 'text', value: '...' } ],
+    ui:        [ { type: 'text', value: '...' } ]
+  }
+}
+```
+
+#### 영상 연결하기
+
+`video` 필드에 주소를 그대로 넣으면 자동으로 임베드돼요.
+
+- `https://www.youtube.com/watch?v=abc123` (유튜브 일반 주소) OK
+- `https://youtu.be/abc123` (단축 주소) OK
+- `https://vimeo.com/123456789` (Vimeo) OK
+- `''` (빈 값) → placeholder 표시
+
+#### 섹션 안에 글 + 이미지 같이 넣기
+
+각 섹션(introduction/ambience/voice/sfx/ui)은 **배열**입니다. 글과 이미지를 자유롭게 섞어 쓸 수 있어요.
+
+```javascript
+introduction: [
+  { type: 'text',  value: '첫 번째 글입니다.\n줄바꿈도 됩니다.' },
+  { type: 'image', src: 'assets/images/screenshot-1.png', alt: '스크린샷 설명' },
+  { type: 'text',  value: '이미지 아래 추가 설명입니다.' },
+  { type: 'image', src: 'assets/images/screenshot-2.png', alt: '두 번째 이미지' }
+]
+```
+
+이미지는 `assets/images/` 폴더에 파일을 올린 뒤 `src`에 경로를 적으면 돼요.
+
+비어있는 섹션 (`[]`)은 자동으로 "세부 내용은 추후 추가됩니다."로 표시돼요.
+
+#### 필터 태그
+
+`tags` 배열의 값이 화면 위쪽 필터 버튼과 매칭돼요.
+
+사용 가능: `trailer`, `ingame`, `ui`, `casual`, `subculture`, `rpg`, `horror`, `unreal`
+
+---
+
+### 3) 그 외 자주 수정하는 것
+
+| 무엇을 | 어디서 |
+| --- | --- |
+| Landing 이름 | `index.html` |
+| Intro 문구 | `index.html` |
+| Profile 본인정보 | `index.html` |
+| Skills 항목 | `index.html` |
+| 회사 정보 (회사명, 기간 등) | `js/main.js` (`COMPANY_DATA` 상단) |
+| 연락처 (전화/이메일) | `index.html` |
+| 색상 | `css/style.css` (맨 위 `:root`) |
+
+---
+
+## GitHub에서 수정하는 방법
+
+1. GitHub 리포지토리 → 수정할 파일 클릭 (예: `js/main.js`)
+2. 우측 상단 **✏️ 연필 아이콘** 클릭
+3. 텍스트 수정
+4. 화면 아래 **`Commit changes`** 클릭
+5. 1~2분 뒤 사이트 자동 반영 → 새로고침
+
 ## 로컬에서 미리보기
 
-별도 빌드 도구 없이 정적 파일로 만들어졌어요. 그냥 `index.html`을 브라우저로 열면 됩니다.
-다만 일부 브라우저에서 `file://` 경로일 때 일부 동작이 제한될 수 있어서, 간단한 로컬 서버 사용을 권장해요.
-
 ```bash
-# Python이 설치되어 있다면
 python3 -m http.server 8080
-
-# 또는 VS Code의 Live Server 확장 사용
 ```
 
-이후 `http://localhost:8080` 으로 접속하면 됩니다.
-
-## GitHub Pages 배포 방법
-
-1. GitHub에서 새 리포지토리를 만들어요. (예: `yoonhyeri-portfolio`)
-2. 이 폴더 안의 파일들을 그대로 업로드해요. (Web UI에서 드래그앤드롭 가능)
-3. 리포지토리 페이지에서 **Settings → Pages** 로 이동해요.
-4. **Source**를 `Deploy from a branch`로 두고, Branch는 `main`, 폴더는 `/ (root)`로 선택 후 저장.
-5. 잠시 후 `https://<본인깃허브아이디>.github.io/yoonhyeri-portfolio/` 에서 접속할 수 있어요.
-
-## 콘텐츠 수정 가이드
-
-### 1) 프로필 정보 바꾸기
-`index.html`에서 `<!-- PROFILE -->` 섹션을 찾아 텍스트를 직접 수정하면 돼요.
-
-### 2) 경력 / 프로젝트 데이터 바꾸기
-`js/main.js` 상단의 `COMPANY_DATA` 객체를 수정해요. 각 회사의 `summary`(주요 경험/주요 성과)와 `projects` 배열을 자유롭게 늘리고 줄일 수 있어요.
-
-### 3) 포트폴리오 작업 추가/수정
-`js/main.js`의 `PORTFOLIO_DATA` 배열에서 항목을 수정해요. `tags` 배열에 들어가는 값(`'rpg'`, `'trailer'` 등)이 필터와 연결돼요.
-
-### 4) 썸네일 이미지 넣기
-`assets/images/` 폴더에 이미지(예: `dragon-dogma.jpg`)를 넣고, `js/main.js`의 `renderPortfolio` 함수 안의 `.pf-card__thumb` 부분을 아래처럼 바꿔주세요.
-
-```html
-<div class="pf-card__thumb" style="background-image:url('assets/images/dragon-dogma.jpg');background-size:cover;background-position:center;"></div>
-```
-
-### 5) 영상 연결하기
-포트폴리오 디테일 영상은 자동재생되지 않고, 사용자가 클릭해서 재생하는 구조예요.
-`js/main.js`의 `openPortfolioDetail` 함수에서 `pfVideo.innerHTML` 부분을 아래 중 하나로 바꿔주세요.
-
-**YouTube 임베드**
-```html
-<iframe src="https://www.youtube.com/embed/영상ID" allowfullscreen></iframe>
-```
-
-**Vimeo 임베드**
-```html
-<iframe src="https://player.vimeo.com/video/영상ID" allowfullscreen></iframe>
-```
-
-**MP4 직접 재생**
-```html
-<video src="assets/videos/내영상.mp4" controls preload="metadata"></video>
-```
-
-### 6) 연락처 정보
-`index.html`의 `<!-- CONTACT -->` 섹션에서 전화번호, 이메일, 외부 링크를 수정해요.
-- Resume PDF: `<a class="contact__item contact__item--accent" href="여기에 PDF 경로" download>` 형태로 연결
-- 이력서 파일은 `assets/` 폴더 안에 넣고 `assets/이력서.pdf` 처럼 경로를 적어주면 다운로드 가능
+이후 `http://localhost:8080` 으로 접속.
 
 ## 디자인 시스템 요약
 
@@ -91,20 +156,4 @@ python3 -m http.server 8080
 | Card | `#FFFFFF` |
 | Text | `#191F28` |
 | Card Radius | `24px` |
-| Card Padding | `32px` |
-| Shadow | `0 2px 8px rgba(15, 23, 42, 0.04)` |
 | Font | Pretendard Variable |
-
-## 반응형 대응
-
-- 데스크탑 (1200px 이상): 4열 포트폴리오, 사이드 30/70 Experience 레이아웃
-- 태블릿 (960px 이하): 2열 포트폴리오, 1열 Experience, 햄버거 메뉴 전환
-- 모바일 (560px 이하): 1열, 카드 패딩 축소, 폰트 사이즈 조정
-
-## 기술 스택
-
-- HTML5 / CSS3 / Vanilla JavaScript
-- 외부 라이브러리 없음 (Pretendard 폰트 CDN만 사용)
-- 빌드 도구 없음
-
-가벼우면서도 빠르게 동작해요. GitHub Pages, Netlify, Vercel 어디든 그대로 올리면 됩니다.
